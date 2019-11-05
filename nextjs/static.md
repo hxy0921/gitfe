@@ -67,53 +67,53 @@ title: CSS及静态资源引入
 
   ### 使用 CSS / Sass / Less / Stylus files
 
-    支持用.css, .scss, .less or .styl，需要配置默认文件 next.config.js
+  支持用.css, .scss, .less or .styl，需要配置默认文件 next.config.js
 
-    举个栗子🌰: 
+  举个栗子🌰: 
 
-    ```
-      # 安装
-      npm install --save @zeit/next-css
-      # or
-      yarn add @zeit/next-css
-    ```
+  ```
+    # 安装
+    npm install --save @zeit/next-css
+    # or
+    yarn add @zeit/next-css
+  ```
 
-    在项目的根目录（在pages /和package.json旁边）中创建一个next.config.js文件
+  在项目的根目录（在pages /和package.json旁边）中创建一个next.config.js文件
 
-    ```
+  ```
+  # next.config.js
+  const withCSS = require('@zeit/next-css')
+  module.exports = withCSS({
+    # 设置css模块
+    cssModules: true
+  })
+  ```
+
+  引入页面,创建一个css文件 index.css
+  ```
+  .example {
+    font-size: 50px;
+  }
+  ```
+  在pages/index.js中引入css文件
+  ```
+  import css from "../index.css"
+
+  export default () => <div className={css.example}>Hello World!</div>
+  ```
+
+  您还可以通过传递一个名为cssLoaderOptions的对象，将选项列表传递给css-loader。例如，要启用局部作用域的CSS模块，可以这样写:
+  ```
     # next.config.js
     const withCSS = require('@zeit/next-css')
     module.exports = withCSS({
-      # 设置css模块
-      cssModules: true
+      cssModules: true,
+      cssLoaderOptions: {
+        importLoaders: 1,
+        localIdentName: "[local]___[hash:base64:5]",
+      }
     })
-    ```
-
-    引入页面,创建一个css文件 index.css
-    ```
-    .example {
-      font-size: 50px;
-    }
-    ```
-    在pages/index.js中引入css文件
-    ```
-    import css from "../index.css"
-
-    export default () => <div className={css.example}>Hello World!</div>
-    ```
-
-    您还可以通过传递一个名为cssLoaderOptions的对象，将选项列表传递给css-loader。例如，要启用局部作用域的CSS模块，可以这样写:
-    ```
-      # next.config.js
-      const withCSS = require('@zeit/next-css')
-      module.exports = withCSS({
-        cssModules: true,
-        cssLoaderOptions: {
-          importLoaders: 1,
-          localIdentName: "[local]___[hash:base64:5]",
-        }
-      })
-    ```
+  ```
 
 ## 静态资源文件服务（如图像）
 
