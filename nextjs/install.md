@@ -13,7 +13,7 @@ title: 安装
 
 > npm install --save next react react-dom
 
-#### 在package.json文件中添加以下文件
+#### 在package.json文件中添加以下代码
 
 ```bash
 {

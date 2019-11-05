@@ -59,9 +59,9 @@ title: CSS及静态资源引入
     - [Aphrodite](https://github.com/zeit/next.js/tree/7.0.0-canary.8/examples/with-aphrodite)
     - [Fela](https://github.com/zeit/next.js/tree/7.0.0-canary.8/examples/with-fela)
 
-    服务端渲染的时样式更改,可以通过包裹自定义 Document，来添加样式
-    eg: 
-    [Styled components custom document](https://github.com/zeit/next.js/tree/7.0.0-canary.8/examples/with-styled-components)
+  服务端渲染的时样式更改,可以通过包裹自定义 Document，来添加样式
+
+  [Styled components custom document](https://github.com/zeit/next.js/tree/7.0.0-canary.8/examples/with-styled-components)
 
 
 
