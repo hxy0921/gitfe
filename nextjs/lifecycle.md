@@ -72,3 +72,40 @@ export default class extends React.Component {
 }
 ```
 
+当页面渲染加载数据时，我们使用 getInitalProps 方法，异步获取js数据并绑定在props上。
+
+当页面初始化加载时，getInitialProps只会加载在服务端。只有当路由跳转（Link组件跳转或 API 方法跳转）时，客户端才会执行getInitialProps。
+
+当服务渲染时，getInitalProps 会将数据序列化，确保 getInitalProps 返回的是一个普通js对象，而不是Data， Map，或者 Set 类型。
+
+> `getInitalProps` 不能在自组件中使用，是能在pages文件下使用。
+> `getInitalProps` 里只能使用需要在服务端渲染的模块。
+
+给无状态组件定义getInitialProps：
+
+```
+const Page = ({ stars }) =>
+  <div>
+    Next stars: {stars}
+  </div>
+
+Page.getInitialProps = async ({ req }) => {
+  const res = await fetch('https://api.github.com/repos/zeit/next.js')
+  const json = await res.json()
+  return { stars: json.stargazers_count }
+}
+
+export default Page
+```
+
+getInitialProps入参对象的属性有：
+
+- pathname - URL 的 path 部分
+- query - URL 的 query 部分，并被解析成对象
+- asPath - 显示在浏览器中的实际路径（包含查询部分），为String类型
+- req - HTTP 请求对象 (只有服务器端有)
+- res - HTTP 返回对象 (只有服务器端有)
+- jsonPageRes - 获取数据响应对象 (只有客户端有)
+- err - 渲染过程中的任何错误
+
+

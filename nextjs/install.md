@@ -29,7 +29,8 @@ title: 安装
 
 pages文件下的每一个.js文件相当于每一个路由，自动处理和渲染。
 
-eg：
+举个栗子🌰：
+
 新建文件 ./pages/index.js
 ```base
   export default () => <div>Welcome to next.js!</div>
@@ -40,7 +41,7 @@ eg：
 
 每个页面中只导入本页面`import`引入并且使用的代码，不会加载不需要的代码
 
-eg： 
+举个栗子🌰： 
 
 ```
 import cowsay from 'cowsay-browser'
