@@ -311,6 +311,49 @@ componentDidUpdate(prevProps) {
 > 那么这将会出现新页面，即使我们加了浅层路由，但是它还是会卸载当前页，会加载新的页面并触发新页面的getInitialProps。
 
 
+### useRouter
+
+如果你想在应用程序的任何功能组件中访问router对象，你可以使用withRouter高阶组件。
+栗子🌰：
+```
+import { useRouter } from 'next/router'
+
+export default function ActiveLink({ children, href }) {
+  const router = useRouter()
+  const style = {
+    marginRight: 10,
+    color: router.pathname === href ? 'red' : 'black',
+  }
+
+  const handleClick = e => {
+    e.preventDefault()
+    router.push(href)
+  }
+
+  return (
+    <a href={href} onClick={handleClick} style={style}>
+      {children}
+    </a>
+  )
+}
+```
+
+注意: useRouter是一个React钩子，这意味着它不能与类一起使用。您既可以使用withRouter(一个高阶组件)，也可以将类封装在一个函数组件中。
+
+
+### 高阶组件
+
+withRouter则还可以将同一router对象添加到任何组件中
+方法：
+```
+import { withRouter } from 'next/router'
+
+function Page({ router }) {
+  return <p>{router.pathname}</p>
+}
+
+export default withRouter(Page)
+```
 
 
 
